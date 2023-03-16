@@ -12,17 +12,32 @@ class Header extends StatefulWidget implements PreferredSizeWidget {
 
 class _HeaderState extends State<Header> with SingleTickerProviderStateMixin {
   late TabController _tabController;
+  List<Widget> _tabs = []; // 保存 Tab 列表
 
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: 7, vsync: this);
+    _tabs = _buildTabs(); // 初始化 Tab 列表
   }
 
   @override
   void dispose() {
     _tabController.dispose();
     super.dispose();
+  }
+
+  // 优化 Tab 生成逻辑，只在需要更新时才重新生成
+  List<Widget> _buildTabs() {
+    return [
+      Tab(text: '首页'),
+      Tab(text: '产品'),
+      Tab(text: '解决方案'),
+      Tab(text: '客户案例'),
+      Tab(text: '新闻资讯'),
+      Tab(text: '关于我们'),
+      Tab(text: '联系我们'),
+    ];
   }
 
   @override
@@ -33,13 +48,13 @@ class _HeaderState extends State<Header> with SingleTickerProviderStateMixin {
       title: Row(
         children: [
           Image.asset(
-            'assets/images/logo.png', // 公司标志
+            'assets/images/logo.png',
             width: 40,
             height: 40,
           ),
           SizedBox(width: 10),
           Text(
-            'Company Name', // 公司名称
+            'Company Name',
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
@@ -67,69 +82,24 @@ class _HeaderState extends State<Header> with SingleTickerProviderStateMixin {
         TextButton(
           onPressed: () {},
           child: Text(
-            '登录', // 登录按钮
-            style: TextStyle(color: Colors.grey, fontSize: 16),
+            'Login',
+            style: TextStyle(color: Colors.grey),
           ),
         ),
         TextButton(
           onPressed: () {},
           child: Text(
-            '注册', // 注册按钮
-            style: TextStyle(color: Colors.blue, fontSize: 16),
+            'Register',
+            style: TextStyle(color: Colors.blue),
           ),
         ),
       ],
       bottom: TabBar(
-        controller: _tabController, // Add the TabController
-        tabs: [
-          Tab(
-            child: Text(
-              '首页',
-              style: TextStyle(fontSize: 16),
-            ),
-          ),
-          Tab(
-            child: Text(
-              '产品',
-              style: TextStyle(fontSize: 16),
-            ),
-          ),
-          Tab(
-            child: Text(
-              '解决方案',
-              style: TextStyle(fontSize: 16),
-            ),
-          ),
-          Tab(
-            child: Text(
-              '客户案例',
-              style: TextStyle(fontSize: 16),
-            ),
-          ),
-          Tab(
-            child: Text(
-              '新闻资讯',
-              style: TextStyle(fontSize: 16),
-            ),
-          ),
-          Tab(
-            child: Text(
-              '关于我们',
-              style: TextStyle(fontSize: 16),
-            ),
-          ),
-          Tab(
-            child: Text(
-              '联系我们',
-              style: TextStyle(fontSize: 16),
-            ),
-          ),
-        ],
+        controller: _tabController,
+        tabs: _tabs, // 使用保存的 Tab 列表
         indicatorColor: Colors.blue,
         unselectedLabelColor: Colors.grey,
         labelColor: Colors.blue,
-        labelPadding: EdgeInsets.symmetric(horizontal: 8.0),
-        isScrollable: true,
       ),
     );
   }

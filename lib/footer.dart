@@ -5,55 +5,45 @@ class Footer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 20),
-      color: Colors.grey[300],
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(
-            '网站地图',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          ),
-          SizedBox(height: 10),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              TextButton(
-                onPressed: () {},
-                child: Text('首页'),
+    return Scaffold(
+      backgroundColor: Theme.of(context).primaryColor,
+      body: Padding(
+        padding: EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Company Name',
+              style: Theme.of(context).textTheme.headline6!.copyWith(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+            ),
+            SizedBox(height: 16.0),
+            Text(
+              'Address: XX Road, XX District, XX City',
+              style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                    color: Colors.white,
+                  ),
+            ),
+            SizedBox(height: 8.0),
+            Text(
+              'Tel: 1234567890',
+              style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                    color: Colors.white,
+                  ),
+            ),
+            SizedBox(height: 8.0),
+            ElevatedButton(
+              onPressed: () {},
+              child: Text('Contact Us'),
+              style: ElevatedButton.styleFrom(
+                primary: Colors.white,
+                onPrimary: Theme.of(context).primaryColor,
               ),
-              TextButton(
-                onPressed: () {},
-                child: Text('产品中心'),
-              ),
-              TextButton(
-                onPressed: () {},
-                child: Text('新闻资讯'),
-              ),
-              TextButton(
-                onPressed: () {},
-                child: Text('联系我们'),
-              ),
-            ],
-          ),
-          SizedBox(height: 20),
-          Text(
-            '联系方式',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          ),
-          SizedBox(height: 10),
-          Text(
-            '地址：xxx街道xxx号\n电话：xxxxxxxxxx\n邮箱：xxxxx@xxxx.com',
-            textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 16),
-          ),
-          SizedBox(height: 20),
-          Text(
-            '版权信息 © 2023 xxx有限公司',
-            style: TextStyle(fontSize: 16),
-          ),
-        ],
+            ),
+          ],
+        ),
       ),
     );
   }
